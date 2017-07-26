@@ -1,4 +1,4 @@
-package com.misnearzhang.grpc.consumer;
+package com.misnearzhang.grpc.provider;
 
 import grpcstart.RpcServiceGrpc;
 import grpcstart.proto;

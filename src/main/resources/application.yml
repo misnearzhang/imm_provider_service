@@ -61,3 +61,6 @@ server:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: com.misnearzhangarzhang.pojo
+grpc:
+  server:
+      port: 3000

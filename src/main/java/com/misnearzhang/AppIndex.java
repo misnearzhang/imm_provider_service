@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * Created by zhanglong on 2017/7/14.
  */
-@RestController
 @SpringBootApplication
 public class AppIndex {
     public static void main(String[] args) {

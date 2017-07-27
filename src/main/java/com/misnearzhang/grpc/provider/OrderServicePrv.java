@@ -1,5 +1,6 @@
 package com.misnearzhang.grpc.provider;
 
+import com.misnearzhang.grpc.config.annotation.GRpcService;
 import grpcstart.RpcServiceGrpc;
 import grpcstart.proto;
 import io.grpc.Server;
@@ -12,8 +13,25 @@ import java.io.IOException;
  * Hello world!
  *
  */
-public class OrderServicePrv {
-    private int port = 3000;
+@GRpcService
+public class OrderServicePrv extends RpcServiceGrpc.RpcServiceImplBase {
+    @Override
+    public void getUserDate(proto.Request request, StreamObserver<proto.Response> responseObserver) {
+        System.out.println(request.getData());
+        proto.Response response = proto.Response.newBuilder().setId(1000).setStatus(proto.status.OK).build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void makeOrder(proto.Request request, StreamObserver<proto.Response> responseObserver) {
+        System.out.println(request.getData());
+        proto.Response response = proto.Response.newBuilder().setId(2000).setStatus(proto.status.ERROR).build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+}
+  /*  private int port = 3000;
     private Server server;
 
     private void start() throws IOException {
@@ -50,25 +68,7 @@ public class OrderServicePrv {
         final OrderServicePrv server = new OrderServicePrv();
         server.start();
         server.blockUntilShutdown();
-    }
+    }*/
 
 
-    // 实现 定义一个实现服务接口的类
-    private class RpcService extends RpcServiceGrpc.RpcServiceImplBase {
-        @Override
-        public void getUserDate(proto.Request request, StreamObserver<proto.Response> responseObserver) {
-            System.out.println(request.getData());
-            proto.Response response = proto.Response.newBuilder().setId(1000).setStatus(proto.status.OK).build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
-        }
 
-        @Override
-        public void makeOrder(proto.Request request, StreamObserver<proto.Response> responseObserver) {
-            System.out.println(request.getData());
-            proto.Response response = proto.Response.newBuilder().setId(2000).setStatus(proto.status.ERROR).build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
-        }
-    }
-}

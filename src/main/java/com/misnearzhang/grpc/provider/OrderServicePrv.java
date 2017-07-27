@@ -1,13 +1,18 @@
 package com.misnearzhang.grpc.provider;
 
+import com.google.gson.Gson;
 import com.misnearzhang.grpc.config.annotation.GRpcService;
+import com.misnearzhang.pojo.User;
+import com.misnearzhang.service.UserService;
 import grpcstart.RpcServiceGrpc;
 import grpcstart.proto;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Hello world!
@@ -15,10 +20,14 @@ import java.io.IOException;
  */
 @GRpcService
 public class OrderServicePrv extends RpcServiceGrpc.RpcServiceImplBase {
+    @Autowired
+    UserService userService;
+
+    private final Gson gson = new Gson();
     @Override
     public void getUserDate(proto.Request request, StreamObserver<proto.Response> responseObserver) {
-        System.out.println(request.getData());
-        proto.Response response = proto.Response.newBuilder().setId(1000).setStatus(proto.status.OK).build();
+        List<User> userList =  userService.getUserInfo();
+        proto.Response response = proto.Response.newBuilder().setId(1000).setStatus(proto.status.OK).setData(gson.toJson(userList)).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }

@@ -1,6 +1,6 @@
 syntax = "proto3";
-package grpcstart;
-option java_package = "grpcstart";
+package grpcdl;
+option java_package = "com.misnearzhang.common.grpcdl";
 option java_outer_classname = "proto";
 
 message Request {

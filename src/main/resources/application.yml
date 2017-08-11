@@ -12,7 +12,7 @@ spring:
     name: ${app.datasource.name}
     url: jdbc:mysql://${app.datasource.host}/${app.datasource.name}?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: ${app.datasource.username}
-    #password: ${app.datasource.password}
+    password: ${app.datasource.password}
     type: org.apache.commons.dbcp2.BasicDataSource
     driver-class-name: com.mysql.jdbc.Driver
 

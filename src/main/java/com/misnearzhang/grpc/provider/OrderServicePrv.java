@@ -37,44 +37,6 @@ public class OrderServicePrv extends RpcServiceGrpc.RpcServiceImplBase {
         responseObserver.onCompleted();
     }
 }
-  /*  private int port = 3000;
-    private Server server;
-
-    private void start() throws IOException {
-        server = ServerBuilder.forPort(port)
-                .addService(new RpcService())
-                .build()
-                .start();
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                OrderServicePrv.this.stop();
-            }
-        });
-    }
-
-    private void stop() {
-        if (server != null) {
-            //通知zookeeper清除链接信息
-
-            // TODO
-            server.shutdown();
-        }
-    }
-    // block 一直到退出程序
-    private void blockUntilShutdown() throws InterruptedException {
-        if (server != null) {
-            server.awaitTermination();
-        }
-    }
-
-
-    public static void main(String[] args) throws IOException, InterruptedException {
-
-        final OrderServicePrv server = new OrderServicePrv();
-        server.start();
-        server.blockUntilShutdown();
-    }*/
 
 
 

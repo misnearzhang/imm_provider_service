@@ -27,4 +27,5 @@ enum type {
 service RpcService{
     rpc getUserDate(Request) returns (Response){};
 	rpc makeOrder(Request) returns (Response){};
+
 }

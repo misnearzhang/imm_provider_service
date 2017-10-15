@@ -1,6 +1,7 @@
 package com.misnearzhang.grpc.config.annotation;
 
 import io.grpc.ClientInterceptor;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -11,8 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface GRpcClient
-{
+public @interface GRpcClient {
     String value() default "localhost";
 
     Class<? extends ClientInterceptor>[] interceptors() default {};

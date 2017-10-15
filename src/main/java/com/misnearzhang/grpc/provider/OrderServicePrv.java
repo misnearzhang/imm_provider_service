@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * Hello world!
- *
  */
 @GRpcService
 public class OrderServicePrv extends RpcServiceGrpc.RpcServiceImplBase {
@@ -21,9 +20,10 @@ public class OrderServicePrv extends RpcServiceGrpc.RpcServiceImplBase {
     UserService userService;
 
     private final Gson gson = new Gson();
+
     @Override
     public void getUserDate(proto.Request request, StreamObserver<proto.Response> responseObserver) {
-        List<User> userList =  userService.getUserInfo();
+        List<User> userList = userService.getUserInfo();
         proto.Response response = proto.Response.newBuilder().setId(1000).setStatus(proto.status.OK).setData(gson.toJson(userList)).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
